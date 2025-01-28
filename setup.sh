@@ -51,6 +51,8 @@ sudo apt install -y pipx
 pipx install sherlock-project
 pipx ensurepath
 
+sudo apt install flatpak
+
 # Instalacja Subfinder
 echo "Instalowanie Subfinder..."
 wget https://github.com/projectdiscovery/subfinder/releases/download/v2.5.7/subfinder_2.5.7_linux_amd64.zip -O /tmp/subfinder.zip
