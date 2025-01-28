@@ -12,100 +12,48 @@ fi
 apt clean
 apt update && apt upgrade -y
 
-# Instalacja wget i curl
-echo "Instalowanie wget i curl..."
-apt install -y wget curl
+# Instalacja podstawowych narzędzi
+apt install -y wget curl git build-essential python3-pip
 
-# Ustawienia terminala na tryb ciemny
-echo "Konfigurowanie terminala na tryb ciemny..."
-sudo -u osint gsettings set org.gnome.Terminal.Legacy.Settings theme-variant 'dark'
+# Instalacja gnome-extensions-cli
+pip3 install gnome-extensions-cli
 
-# Pobieranie tła pulpitu
-echo "Pobieranie tła pulpitu..."
-wget -O /home/osint/desktop2.png https://github.com/p4b1o/osint-template/raw/main/desktop2.png
+tput reset && source ~/.profile
 
-# Ustawianie tła pulpitu
-echo "Ustawianie tła pulpitu..."
-sudo -u osint gsettings set org.gnome.desktop.background picture-uri "file:///home/osint/desktop2.png"
+# Instalacja rozszerzeń GNOME
+echo "Instalowanie rozszerzeń GNOME..."
+gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
+gnome-extensions enable dash-to-dock@micxgx.gmail.com
+gnome-extensions-cli install 2087
 
-# Instalacja dash-to-dock
-echo "Instalowanie rozszerzenia dash-to-dock..."
-apt install -y gnome-shell-extension-dash-to-dock
-
-# Konfigurowanie docka na dolnej belce z dużymi ikonami
-echo "Konfigurowanie docka na dolnej belce z dużymi ikonami..."
-sudo -u osint gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
-sudo -u osint gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
-sudo -u osint gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 64
-
-# Wyłączanie blokady ekranu i wygaszacza
-echo "Wyłączanie blokady ekranu i wygaszacza..."
-sudo -u osint gsettings set org.gnome.desktop.session idle-delay 0
-sudo -u osint gsettings set org.gnome.desktop.screensaver lock-enabled false
-
-# Instalacja VMware Tools
-echo "Instalowanie VMware Tools..."
-apt install -y open-vm-tools open-vm-tools-desktop
-systemctl restart vmtoolsd
-
-# Instalacja Flatpak
-echo "Instalowanie Flatpak..."
-apt install -y flatpak
-echo "Dodawanie Flatpak do GNOME Software..."
-apt install -y gnome-software-plugin-flatpak
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-# Instalacja Firefox przez Flatpak
-echo "Instalowanie Firefox przez Flatpak..."
-flatpak install -y flathub org.mozilla.firefox
-
-# Konfiguracja Firefox (instalacja wtyczek)
-echo "Konfigurowanie Firefox (wtyczki)..."
-firefox_profile_dir="$(find /home/osint/.mozilla/firefox -name "*.default-release" -type d | head -n 1)"
-if [ -z "$firefox_profile_dir" ]; then
-    echo "Nie znaleziono profilu Firefox. Pominięto instalację wtyczek."
-else
-    echo "Instalowanie wtyczek do Firefox..."
-    cat <<EOF > "$firefox_profile_dir/extensions.json"
-    {
-        "addons": {
-            "activeAddons": {
-                "uBlockOrigin@raymondhill.net": {
-                    "location": "app-profile",
-                    "manifest": {
-                        "name": "uBlock Origin"
-                    }
-                },
-                "noscript@noscript.net": {
-                    "location": "app-profile",
-                    "manifest": {
-                        "name": "NoScript"
-                    }
-                }
-            }
-        }
-    }
-EOF
-fi
+# Konfiguracja GNOME
+echo "Konfigurowanie GNOME..."
+gsettings set org.gnome.Terminal.Legacy.Settings theme-variant 'dark'
+gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+gsettings set org.gnome.desktop.background picture-uri ''
+gsettings set org.gnome.desktop.background picture-uri-dark ''
+gsettings set org.gnome.desktop.background primary-color 'rgb(30, 6, 5)'
+gsettings set org.gnome.desktop.notifications show-banners false
+gsettings set org.gnome.desktop.session idle-delay 0
+sudo systemctl mask suspend.target
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.mutter center-new-windows true
 
 # Instalacja Sherlock
 echo "Instalowanie Sherlock..."
-apt install -y git python3-pip
 sudo -u osint git clone https://github.com/sherlock-project/sherlock.git /home/osint/sherlock
 sudo -u osint pip3 install -r /home/osint/sherlock/requirements.txt
 
 # Instalacja Subfinder
 echo "Instalowanie Subfinder..."
-apt install -y unzip
 wget https://github.com/projectdiscovery/subfinder/releases/download/v2.5.7/subfinder_2.5.7_linux_amd64.zip -O /tmp/subfinder.zip
 unzip -o /tmp/subfinder.zip -d /usr/local/bin/
 rm /tmp/subfinder.zip
 
 # Instalacja ProtonVPN
 echo "Instalowanie ProtonVPN..."
-apt install -y openvpn dialog python3-pip
 pip3 install protonvpn-cli
 
 # Informacje końcowe
 echo "Instalacja zakończona. Aby przełączyć na użytkownika osint, użyj polecenia: su - osint"
-echo "Zainstalowane oprogramowanie: VMware Tools, Firefox, wtyczki, Sherlock, Subfinder, ProtonVPN."
+echo "Zainstalowane oprogramowanie: GNOME extensions, Sherlock, Subfinder, ProtonVPN."
