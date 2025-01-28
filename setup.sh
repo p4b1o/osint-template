@@ -27,32 +27,42 @@ pip3 install gnome-extensions-cli
 tput reset && source ~/.profile
 
 # Instalacja rozszerzeń GNOME
-echo "Instalowanie rozszerzeń GNOME..."
-gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
-gnome-extensions enable dash-to-dock@micxgx.gmail.com
-gnome-extensions-cli install 2087
+sudo -u osint bash -c '
+  echo "Instalowanie rozszerzeń GNOME..."
+  gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
+  gnome-extensions enable dash-to-dock@micxgx.gmail.com
+  gnome-extensions-cli install 2087
+'
 
-# Konfiguracja GNOME
-wget -O /home/osint/desktop2.png https://github.com/p4b1o/osint-template/raw/main/desktop2.png
-gsettings set org.gnome.desktop.background picture-uri 'file:///home/osint/desktop2.png'
-gsettings set org.gnome.desktop.background picture-uri-dark 'file:///home/osint/desktop2.png'
-# Konfiguracja GNOME
-echo "Konfigurowanie GNOME..."
-gsettings set org.gnome.Terminal.Legacy.Settings theme-variant 'dark'
-gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-gsettings set org.gnome.desktop.background picture-uri ''
-gsettings set org.gnome.desktop.background picture-uri-dark ''
-gsettings set org.gnome.desktop.background primary-color 'rgb(30, 6, 5)'
-gsettings set org.gnome.desktop.notifications show-banners false
-gsettings set org.gnome.desktop.session idle-delay 0
+# Pobieranie i ustawianie tła przez lokalnego użytkownika
+sudo -u osint bash -c '
+  echo "Pobieranie i ustawianie tła pulpitu..."
+  wget -O /home/osint/desktop2.png https://github.com/p4b1o/osint-template/raw/main/desktop2.png
+  gsettings set org.gnome.desktop.background picture-uri "file:///home/osint/desktop2.png"
+  gsettings set org.gnome.desktop.background picture-uri-dark "file:///home/osint/desktop2.png"
+  gsettings set org.gnome.desktop.background primary-color "rgb(0, 0, 0)"
+'
+
+# Konfiguracja GNOME przez lokalnego użytkownika
+sudo -u osint bash -c '
+  echo "Konfigurowanie GNOME..."
+  gsettings set org.gnome.Terminal.Legacy.Settings theme-variant "dark"
+  gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+  gsettings set org.gnome.desktop.notifications show-banners false
+  gsettings set org.gnome.desktop.session idle-delay 0
+  gsettings set org.gnome.desktop.screensaver lock-enabled false
+  gsettings set org.gnome.mutter center-new-windows true
+'
+
+# Wyłączanie suspend przez lokalnego użytkownika
 sudo systemctl mask suspend.target
-gsettings set org.gnome.desktop.screensaver lock-enabled false
-gsettings set org.gnome.mutter center-new-windows true
 
 # Instalacja Sherlock
-echo "Instalowanie Sherlock..."
-sudo -u osint git clone https://github.com/sherlock-project/sherlock.git /home/osint/sherlock
-sudo -u osint pip3 install -r /home/osint/sherlock/requirements.txt
+sudo -u osint bash -c '
+  echo "Instalowanie Sherlock..."
+  git clone https://github.com/sherlock-project/sherlock.git /home/osint/sherlock
+  pip3 install -r /home/osint/sherlock/requirements.txt
+'
 
 # Instalacja Subfinder
 echo "Instalowanie Subfinder..."
@@ -69,7 +79,6 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 flatpak install flathub org.torproject.torbrowser-launcher -y
 flatpak run org.torproject.torbrowser-launcher
 flatpak install flathub org.onionshare.OnionShare -y
-pip3 install protonvpn-cli
 
 # Informacje końcowe
 echo "Instalacja zakończona. Aby przełączyć na użytkownika osint, użyj polecenia: su - osint"
