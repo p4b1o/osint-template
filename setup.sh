@@ -3,13 +3,13 @@
 # Ustawienia wstępne
 set -e
 
-apt clean
-apt update && apt upgrade -y
+sudo apt clean
+sudo apt update && apt upgrade -y
 
 # Instalacja podstawowych narzędzi
-apt install -y wget curl git build-essential python3-pip
+sudo apt install -y wget curl git build-essential python3-pip
 
-# Konfiguracja Python
+# Konfiguracja Python0
 cd /usr/lib/python3.11
 sudo rm EXTERNALLY-MANAGED
 cd
