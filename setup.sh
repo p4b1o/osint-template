@@ -9,7 +9,7 @@ sudo apt update && sudo apt upgrade -y
 # Instalacja podstawowych narzędzi
 sudo apt install -y wget curl git build-essential python3-pip
 
-# Konfiguracja Python0
+# Konfiguracja Python
 cd /usr/lib/python3.11
 sudo rm EXTERNALLY-MANAGED
 cd
@@ -47,21 +47,21 @@ sudo systemctl mask suspend.target
 
 # Instalacja Sherlock
 echo "Instalowanie Sherlock..."
-git clone https://github.com/sherlock-project/sherlock.git /home/osint/sherlock
-pip3 install -r /home/osint/sherlock/requirements.txt
+sudo apt install -y pipx
+pipx install sherlock-project
 
 # Instalacja Subfinder
 echo "Instalowanie Subfinder..."
 wget https://github.com/projectdiscovery/subfinder/releases/download/v2.5.7/subfinder_2.5.7_linux_amd64.zip -O /tmp/subfinder.zip
-unzip -o /tmp/subfinder.zip -d /usr/local/bin/
-rm /tmp/subfinder.zip
+sudo unzip -o /tmp/subfinder.zip -d /usr/local/bin/
+sudo rm /tmp/subfinder.zip
 
 # Instalacja Tor Browser i OnionShare
 echo "Instalowanie Tor Browser i OnionShare..."
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub org.torproject.torbrowser-launcher -y
+sudo flatpak install flathub org.torproject.torbrowser-launcher -y
 flatpak run org.torproject.torbrowser-launcher
-flatpak install flathub org.onionshare.OnionShare -y
+sudo flatpak install flathub org.onionshare.OnionShare -y
 
 # Informacje końcowe
 echo "Instalacja zakończona. Aby przełączyć na użytkownika osint, użyj polecenia: su - osint"
