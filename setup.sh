@@ -10,25 +10,16 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Aktualizacja systemu
-#echo "Konfigurowanie apt dla Debian 12 (Bookworm)..."
-#cat <<EOF > /etc/apt/sources.list
-#deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
-#deb-src http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
-#deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
-#deb-src http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
-#deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
-#deb-src http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
-#deb http://deb.debian.org/debian/ bookworm-backports main contrib non-free non-free-firmware
-#deb-src http://deb.debian.org/debian/ bookworm-backports main contrib non-free non-free-firmware
-#EOF
-
-apt clean
-apt update && apt upgrade -y
-echo "Konfigurowanie apt dla Debian 9..."
+echo "Konfigurowanie apt dla Debian 12 (Bookworm)..."
 cat <<EOF > /etc/apt/sources.list
-deb http://deb.debian.org/debian stretch main contrib non-free
-deb http://security.debian.org/debian-security stretch/updates main contrib non-free
-deb http://deb.debian.org/debian stretch-updates main contrib non-free
+deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
+deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+deb-src http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian/ bookworm-backports main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ bookworm-backports main contrib non-free non-free-firmware
 EOF
 
 apt clean
