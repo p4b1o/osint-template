@@ -4,7 +4,7 @@
 set -e
 
 sudo apt clean
-sudo apt update && apt upgrade -y
+sudo apt update && sudo apt upgrade -y
 
 # Instalacja podstawowych narzędzi
 sudo apt install -y wget curl git build-essential python3-pip
