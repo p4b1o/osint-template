@@ -9,29 +9,12 @@ if [ "$EUID" -ne 0 ]; then
     exit 1
 fi
 
-# Aktualizacja systemu
-#echo "Konfigurowanie apt dla Debian 12 (Bookworm)..."
-#cat <<EOF > /etc/apt/sources.list
-#deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
-#deb-src http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
-#deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
-#deb-src http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
-#deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
-#deb-src http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
-#deb http://deb.debian.org/debian/ bookworm-backports main contrib non-free non-free-firmware
-#deb-src http://deb.debian.org/debian/ bookworm-backports main contrib non-free non-free-firmware
-#EOF
-
 apt clean
-apt update && apt upgrade -y
-echo "Aktualizowanie systemu..."
 apt update && apt upgrade -y
 
 # Instalacja wget i curl
 echo "Instalowanie wget i curl..."
 apt install -y wget curl
-echo "Aktualizowanie systemu..."
-apt update && apt upgrade -y
 
 # Ustawienia terminala na tryb ciemny
 echo "Konfigurowanie terminala na tryb ciemny..."
@@ -41,21 +24,21 @@ sudo -u osint gsettings set org.gnome.Terminal.Legacy.Settings theme-variant 'da
 echo "Pobieranie tła pulpitu..."
 wget -O /home/osint/desktop2.png https://github.com/p4b1o/osint-template/raw/main/desktop2.png
 
-echo "Konfigurowanie terminala na tryb ciemny..."
-sudo -u osint gsettings set org.gnome.Terminal.Legacy.Settings theme-variant 'dark'
-
-# Konfigurowanie docka na dolnej belce
-sudo -u osint gsettings set org.gnome.desktop.background picture-uri "file:///home/osint/desktop2.png"
+# Ustawianie tła pulpitu
 echo "Ustawianie tła pulpitu..."
-wget -O /home/osint/desktop2.png https://github.com/p4b1o/osint-template/raw/main/desktop2.png
 sudo -u osint gsettings set org.gnome.desktop.background picture-uri "file:///home/osint/desktop2.png"
-# Konfigurowanie docka na dolnej belce
+
+# Instalacja dash-to-dock
+echo "Instalowanie rozszerzenia dash-to-dock..."
+apt install -y gnome-shell-extension-dash-to-dock
+
+# Konfigurowanie docka na dolnej belce z dużymi ikonami
 echo "Konfigurowanie docka na dolnej belce z dużymi ikonami..."
 sudo -u osint gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 sudo -u osint gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
 sudo -u osint gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 64
-echo "Konfigurowanie terminala na tryb ciemny..."
-sudo -u osint gsettings set org.gnome.Terminal.Legacy.Settings theme-variant 'dark'
+
+# Wyłączanie blokady ekranu i wygaszacza
 echo "Wyłączanie blokady ekranu i wygaszacza..."
 sudo -u osint gsettings set org.gnome.desktop.session idle-delay 0
 sudo -u osint gsettings set org.gnome.desktop.screensaver lock-enabled false
@@ -71,7 +54,6 @@ apt install -y flatpak
 echo "Dodawanie Flatpak do GNOME Software..."
 apt install -y gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
 
 # Instalacja Firefox przez Flatpak
 echo "Instalowanie Firefox przez Flatpak..."
