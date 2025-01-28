@@ -49,6 +49,7 @@ sudo systemctl mask suspend.target
 echo "Instalowanie Sherlock..."
 sudo apt install -y pipx
 pipx install sherlock-project
+pipx ensurepath
 
 # Instalacja Subfinder
 echo "Instalowanie Subfinder..."
