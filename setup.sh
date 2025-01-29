@@ -21,6 +21,16 @@ pip3 install gnome-extensions-cli
 tput reset && source ~/.profile
 
 # Instalacja rozszerzeń GNOME
+
+# Konfiguracja docka z preferowanymi aplikacjami
+echo "Konfigurowanie docka GNOME..."
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed true
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 48
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
+gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
+gsettings set org.gnome.shell favorite-apps '["firefox.desktop", "org.torproject.torbrowser.desktop", "org.gnome.Nautilus.desktop", "org.gnome.Terminal.desktop", "code.desktop", "trash.desktop"]'
+
+# Instalacja rozszerzeń GNOME
 echo "Instalowanie rozszerzeń GNOME..."
 gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
 gnome-extensions enable dash-to-dock@micxgx.gmail.com
