@@ -49,9 +49,6 @@ sudo systemctl mask suspend.target
 echo "Instalowanie Sherlock..."
 sudo apt install -y pipx
 pipx install sherlock-project
-pipx ensurepath
-
-sudo apt install flatpak
 
 # Instalacja Subfinder
 echo "Instalowanie Subfinder..."
@@ -66,6 +63,26 @@ sudo flatpak install flathub org.torproject.torbrowser-launcher -y
 flatpak run org.torproject.torbrowser-launcher
 sudo flatpak install flathub org.onionshare.OnionShare -y
 
-# Informacje końcowe
+# Instalacja dodatków do Firefox
+echo "Instalowanie dodatków do Firefox..."
+firefox_addons=(
+    "Firefox Multi-Account Containers"
+    "uBlock Origin"
+    "DownThemAll!"
+    "FireShot"
+    "Nimbus Screen Capture"
+    "Exif Viewer"
+    "User-Agent Switcher and Manager"
+    "Image Search Options"
+)
+
+for addon in "${firefox_addons[@]}"; do
+    echo "Dodawanie: $addon"
+    firefox https://addons.mozilla.org/en-US/firefox/addon/$(echo $addon | tr ' ' '-' | tr '[:upper:]' '[:lower:]') &
+    sleep 5
+    wmctrl -c "Mozilla Firefox"
+done
+
+
 echo "Instalacja zakończona. Aby przełączyć na użytkownika osint, użyj polecenia: su - osint"
 echo "Zainstalowane oprogramowanie: GNOME extensions, Sherlock, Subfinder."
