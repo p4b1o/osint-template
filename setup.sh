@@ -46,9 +46,12 @@ gsettings set org.gnome.mutter center-new-windows true
 sudo systemctl mask suspend.target
 
 # Instalacja Sherlock
-echo "Instalowanie Sherlock..."
 sudo apt install -y pipx
 pipx install sherlock-project
+pipx install ghunt
+pipx install theHarvester
+pipx install exiftool
+pipx ensurepath
 
 # Instalacja Subfinder
 echo "Instalowanie Subfinder..."
@@ -62,6 +65,12 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 sudo flatpak install flathub org.torproject.torbrowser-launcher -y
 flatpak run org.torproject.torbrowser-launcher
 sudo flatpak install flathub org.onionshare.OnionShare -y
+
+# Instalacja VSCode
+echo "Instalowanie Visual Studio Code..."
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/packages.microsoft.gpg > /dev/null
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
+sudo apt update && sudo apt install -y code
 
 # Instalacja dodatków do Firefox
 echo "Instalowanie dodatków do Firefox..."
