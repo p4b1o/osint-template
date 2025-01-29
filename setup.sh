@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ustawienia wstępne
-set -e
+set +e
 
 sudo apt clean
 sudo apt update && sudo apt upgrade -y
@@ -76,30 +76,31 @@ sudo flatpak install flathub org.torproject.torbrowser-launcher -y
 flatpak run org.torproject.torbrowser-launcher
 sudo flatpak install flathub org.onionshare.OnionShare -y
 
+# Usunięcie Firefoxa w wersji Snap i instalacja z PPA
+sudo snap remove --purge firefox
+sudo add-apt-repository -y ppa:mozillateam/ppa
+echo '
+Package: *
+Pin: release o=LP-PPA-mozillateam
+Pin-Priority: 1001
+' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+sudo apt update && sudo apt install firefox -y
+
 # Instalacja VSCode
 echo "Instalowanie Visual Studio Code..."
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/packages.microsoft.gpg > /dev/null
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
 sudo apt update && sudo apt install -y code
 
-# Instalacja dodatków do Firefox
-echo "Instalowanie dodatków do Firefox..."
-firefox_addons=(
-    "Firefox Multi-Account Containers"
-    "uBlock Origin"
-    "DownThemAll!"
-    "FireShot"
-    "Nimbus Screen Capture"
-    "Exif Viewer"
-    "User-Agent Switcher and Manager"
-    "Image Search Options"
-)
+# Instalacja szablonu Firefox
+sudo apt update && sudo apt install -y curl
+cd ~/Desktop
+curl -O "https://drive.google.com/uc?export=download&id=1zQkZo1zsAFVCz0O41pmbmIZdMnd1OZwr"
+unzip ff-template.zip -d ~/.mozilla/firefox/
+cd ~/.mozilla/firefox/ff-template/
+cp -R * ~/.mozilla/firefox/*.default-release
+cd ~/Desktop && rm ff-template.zip
 
-for addon in "${firefox_addons[@]}"; do
-    echo "Dodawanie: $addon"
-    firefox https://addons.mozilla.org/en-US/firefox/addon/$(echo $addon | tr ' ' '-' | tr '[:upper:]' '[:lower:]') &
-    sleep 5
-    wmctrl -c "Mozilla Firefox"
 done
 
 
