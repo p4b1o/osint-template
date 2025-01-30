@@ -100,5 +100,4 @@ cd ~/ && rm mozilla.zip
 
 gsettings set org.gnome.shell favorite-apps '["firefox-esr.desktop", "org.torproject.torbrowser.desktop", "org.gnome.Nautilus.desktop", "org.gnome.Terminal.desktop", "code.desktop", "trash.desktop"]'
 
-echo "Instalacja zakończona. Aby przełączyć na użytkownika osint, użyj polecenia: su - osint"
-echo "Zainstalowane oprogramowanie: GNOME extensions, Sherlock, Subfinder."
+sudo reboot
