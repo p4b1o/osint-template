@@ -100,4 +100,14 @@ cd ~/ && rm mozilla.zip
 
 gsettings set org.gnome.shell favorite-apps ['firefox-esr.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'code.desktop', 'org.torproject.torbrowser-launcher.desktop']
 
-sudo reboot
+#!/bin/bash
+
+echo -n "Instalacja zakończona, zalecany jest reboot systemu. Czy chcesz wykonać restart systemu? (t/n): "
+read ODPOWIEDZ
+
+if [ "$ODPOWIEDZ" == "t" ] || [ "$ODPOWIEDZ" == "T" ]; then
+    echo "Trwa restart systemu..."
+    sudo reboot
+else
+    echo "Anulowano restart systemu."
+fi
