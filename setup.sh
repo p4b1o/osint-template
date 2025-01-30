@@ -98,6 +98,6 @@ wget https://pawelhordynski.com/osint/mozilla.tgz -o mozilla.tgz
 tar -xzvf mozilla.tgz
 cd ~/ && rm mozilla.zip
 
-gsettings set org.gnome.shell favorite-apps '["firefox-esr.desktop", "org.torproject.torbrowser.desktop", "org.gnome.Nautilus.desktop", "org.gnome.Terminal.desktop", "code.desktop", "trash.desktop"]'
+gsettings set org.gnome.shell favorite-apps ['firefox-esr.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'code.desktop', 'org.torproject.torbrowser-launcher.desktop']
 
 sudo reboot
