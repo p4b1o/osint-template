@@ -7,7 +7,7 @@ sudo apt clean
 sudo apt update && sudo apt upgrade -y
 
 # Instalacja podstawowych narzędzi
-sudo apt install -y wget curl git build-essential python3-pip
+sudo apt install -y wget curl git build-essential python3-pip flatpak
 
 # Konfiguracja Python
 cd /usr/lib/python3.11
@@ -28,7 +28,6 @@ gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed true
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 48
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
-gsettings set org.gnome.shell favorite-apps '["firefox.desktop", "org.torproject.torbrowser.desktop", "org.gnome.Nautilus.desktop", "org.gnome.Terminal.desktop", "code.desktop", "trash.desktop"]'
 
 # Instalacja rozszerzeń GNOME
 echo "Instalowanie rozszerzeń GNOME..."
@@ -94,15 +93,12 @@ sudo apt update && sudo apt install -y code
 
 # Instalacja szablonu Firefox
 sudo apt update && sudo apt install -y curl
-cd ~/Desktop
-curl -O "https://drive.google.com/uc?export=download&id=1zQkZo1zsAFVCz0O41pmbmIZdMnd1OZwr"
-unzip ff-template.zip -d ~/.mozilla/firefox/
-cd ~/.mozilla/firefox/ff-template/
-cp -R * ~/.mozilla/firefox/*.default-release
-cd ~/Desktop && rm ff-template.zip
+cd ~/
+wget https://pawelhordynski.com/osint/mozilla.tgz -o mozilla.tgz 
+tar -xzvf mozilla.tgz
+cd ~/ && rm mozilla.zip
 
-done
-
+gsettings set org.gnome.shell favorite-apps '["firefox-esr.desktop", "org.torproject.torbrowser.desktop", "org.gnome.Nautilus.desktop", "org.gnome.Terminal.desktop", "code.desktop", "trash.desktop"]'
 
 echo "Instalacja zakończona. Aby przełączyć na użytkownika osint, użyj polecenia: su - osint"
 echo "Zainstalowane oprogramowanie: GNOME extensions, Sherlock, Subfinder."
