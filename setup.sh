@@ -35,19 +35,16 @@ tput reset && source ~/.profile
 echo "Instalowanie rozszerzeń GNOME..."
 gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
 gnome-extensions enable dash-to-dock@micxgx.gmail.com
-
-# Przykład rozszerzenia wg ID (ID: 2087)
+echo "Konfigurowanie docka GNOME..."
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock autohide false
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock autohide-in-fullscreen false
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock intellihide false
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock dock-fixed true
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock dock-position 'LEFT'
+gsettings --schemadir ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/ set org.gnome.shell.extensions.dash-to-dock extend-height true
 gnome-extensions-cli install 2087
 
-echo "Konfigurowanie docka GNOME..."
-# Dock przy dolnej krawędzi, z intellihide (chowa się, gdy okno go zasłania)
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
-gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 48
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
-gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
-gsettings set org.gnome.shell.extensions.dash-to-dock intellihide true
-gsettings set org.gnome.shell.extensions.dash-to-dock intellihide-mode 'DODGE_ALL_WINDOWS'
-gsettings set org.gnome.shell.extensions.dash-to-dock autohide false
 
 ###############################################################################
 # TŁO PULPITU
@@ -62,16 +59,6 @@ gsettings set org.gnome.desktop.background picture-uri-dark \
   "file:///home/osint/desktop2.png"
 gsettings set org.gnome.desktop.background primary-color "rgb(0, 0, 0)"
 
-###############################################################################
-# USTAWIENIA GNOME
-###############################################################################
-echo "Konfigurowanie GNOME..."
-gsettings set org.gnome.Terminal.Legacy.Settings theme-variant "dark"
-gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-gsettings set org.gnome.desktop.notifications show-banners false
-gsettings set org.gnome.desktop.session idle-delay 0
-gsettings set org.gnome.desktop.screensaver lock-enabled false
-gsettings set org.gnome.mutter center-new-windows true
 
 ###############################################################################
 # WYŁĄCZANIE SUSPEND
