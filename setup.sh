@@ -73,17 +73,14 @@ echo "Instalowanie Tor Browser i OnionShare..."
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 sudo flatpak install flathub org.torproject.torbrowser-launcher -y
 flatpak run org.torproject.torbrowser-launcher
-sudo flatpak install flathub org.onionshare.OnionShare -y
 
-# Usunięcie Firefoxa w wersji Snap i instalacja z PPA
-sudo snap remove --purge firefox
-sudo add-apt-repository -y ppa:mozillateam/ppa
-echo '
-Package: *
-Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
-' | sudo tee /etc/apt/preferences.d/mozilla-firefox
-sudo apt update && sudo apt install firefox -y
+
+sudo apt remove --purge firefox-esr -y
+echo "deb http://deb.debian.org/debian/ bookworm-backports main" \
+  | sudo tee /etc/apt/sources.list.d/debian-backports.list
+
+sudo apt update
+sudo apt -t bookworm-backports install firefox-esr -y
 
 # Instalacja VSCode
 echo "Instalowanie Visual Studio Code..."
@@ -92,12 +89,10 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] http
 sudo apt update && sudo apt install -y code
 
 # Instalacja szablonu Firefox
-sudo apt update && sudo apt install -y curl
 cd ~/
-wget https://pawelhordynski.com/osint/mozilla.tgz -o mozilla.tgz 
+wget -O mozilla.tgz https://pawelhordynski.com/osint/mozilla.tgz
 tar -xzvf mozilla.tgz
-cd ~/ && rm mozilla.zip
+cd ~/ && rm mozilla.tgz
 
-gsettings set org.gnome.shell favorite-apps ['firefox-esr.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'code.desktop', 'org.torproject.torbrowser-launcher.desktop']
-
+gsettings set org.gnome.shell favorite-apps "['firefox-esr.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'code.desktop', 'org.torproject.torbrowser-launcher.desktop']"
 sudo reboot
