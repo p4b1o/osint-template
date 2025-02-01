@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e  # Przerywa skrypt przy pierwszym błędzie
 
 ###############################################################################
 # AKTUALIZACJA I CZYSZCZENIE
@@ -24,17 +23,11 @@ sudo apt install -y python3-venv
 # INSTALACJA I KONFIGURACJA pipx
 ###############################################################################
 sudo apt install -y pipx
-pipx ensurepath
-# Załadowanie profilu (aby PATH się zaktualizował)
-source ~/.bashrc
-
 ###############################################################################
 # INSTALACJA GNOME-EXTENSIONS-CLI
 ###############################################################################
 pipx install gnome-extensions-cli
-pipx ensurepath
-source ~/.bashrc
-export PATH="$HOME/.local/bin:$PATH"
+tput reset && source ~/.profile
 
 ###############################################################################
 # INSTALACJA I KONFIGURACJA ROZSZERZEŃ GNOME
@@ -92,8 +85,7 @@ pipx install sherlock-project
 pipx install ghunt
 pipx install theHarvester
 pipx install exiftool
-pipx ensurepath
-source ~/.bashrc
+tput reset && source ~/.profile
 
 ###############################################################################
 # INSTALACJA SUBFINDER
