@@ -1,11 +1,9 @@
 #!/bin/bash
+set -e  # Przerywa skrypt przy pierwszym błędzie
 
 ###############################################################################
-# USTAWIENIA WSTĘPNE
+# AKTUALIZACJA I CZYSZCZENIE
 ###############################################################################
-set -e
-
-# Aktualizacja i czyszczenie pakietów
 sudo apt clean
 sudo apt update && sudo apt upgrade -y
 
@@ -23,32 +21,42 @@ cd
 sudo apt install -y python3-venv
 
 ###############################################################################
+# INSTALACJA I KONFIGURACJA pipx
+###############################################################################
+sudo apt install -y pipx
+pipx ensurepath
+# Załadowanie profilu (aby PATH się zaktualizował)
+source ~/.profile
+
+###############################################################################
 # INSTALACJA GNOME-EXTENSIONS-CLI
 ###############################################################################
-pip3 install gnome-extensions-cli
+pipx install gnome-extensions-cli
+pipx ensurepath
+source ~/.profile
 
 ###############################################################################
 # INSTALACJA I KONFIGURACJA ROZSZERZEŃ GNOME
 ###############################################################################
 echo "Instalowanie rozszerzeń GNOME..."
-# Najpierw instalujemy, później włączamy
 gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
 gnome-extensions enable dash-to-dock@micxgx.gmail.com
 
-# Drugi przykład instalacji wg ID (ID: 2087)
+# Przykład rozszerzenia wg ID (ID: 2087)
 gnome-extensions-cli install 2087
 
 echo "Konfigurowanie docka GNOME..."
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed true
+# Dock przy dolnej krawędzi, z intellihide (chowa się, gdy okno go zasłania)
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 48
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
-
-# Odświeżenie profilu
-tput reset && source ~/.profile
+gsettings set org.gnome.shell.extensions.dash-to-dock intellihide true
+gsettings set org.gnome.shell.extensions.dash-to-dock intellihide-mode 'DODGE_ALL_WINDOWS'
+gsettings set org.gnome.shell.extensions.dash-to-dock autohide false
 
 ###############################################################################
-# USTAWIANIE TŁA PULPITU
+# TŁO PULPITU
 ###############################################################################
 echo "Pobieranie i ustawianie tła pulpitu..."
 wget -O /home/osint/desktop2.png \
@@ -61,7 +69,7 @@ gsettings set org.gnome.desktop.background picture-uri-dark \
 gsettings set org.gnome.desktop.background primary-color "rgb(0, 0, 0)"
 
 ###############################################################################
-# KONFIGURACJA GNOME
+# USTAWIENIA GNOME
 ###############################################################################
 echo "Konfigurowanie GNOME..."
 gsettings set org.gnome.Terminal.Legacy.Settings theme-variant "dark"
@@ -79,14 +87,10 @@ sudo systemctl mask suspend.target
 ###############################################################################
 # INSTALACJA SHERLOCK, GHUNT, THEHARVESTER, EXIFTOOL (PRZEZ PIPX)
 ###############################################################################
-sudo apt install -y pipx
 pipx install sherlock-project
 pipx install ghunt
 pipx install theHarvester
-
-# EXIFTOOL przez pipx – w razie problemów można zainstalować natywnie z apt
 pipx install exiftool
-
 pipx ensurepath
 
 ###############################################################################
@@ -107,11 +111,11 @@ sudo flatpak remote-add --if-not-exists flathub \
   https://dl.flathub.org/repo/flathub.flatpakrepo
 sudo flatpak install flathub org.torproject.torbrowser-launcher -y
 
-# Opcjonalne uruchomienie konfiguratora
+# Uruchomienie konfiguratora Tor Browser (opcjonalne)
 flatpak run org.torproject.torbrowser-launcher
 
 ###############################################################################
-# REINSTALACJA FIREFOX-ESR (z backports)
+# REINSTALACJA FIREFOX-ESR (z BACKPORTS)
 ###############################################################################
 sudo apt remove --purge firefox-esr -y
 echo "deb http://deb.debian.org/debian/ bookworm-backports main" \
