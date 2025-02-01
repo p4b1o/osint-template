@@ -15,6 +15,12 @@ sudo rm EXTERNALLY-MANAGED
 cd
 sudo apt install python3-venv -y
 
+# Instalacja rozszerzeń GNOME
+echo "Instalowanie rozszerzeń GNOME..."
+gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
+gnome-extensions enable dash-to-dock@micxgx.gmail.com
+gnome-extensions-cli install 2087
+
 # Instalacja gnome-extensions-cli
 pip3 install gnome-extensions-cli
 
@@ -29,11 +35,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 48
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
 gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
 
-# Instalacja rozszerzeń GNOME
-echo "Instalowanie rozszerzeń GNOME..."
-gnome-extensions-cli install dash-to-dock@micxgx.gmail.com
-gnome-extensions enable dash-to-dock@micxgx.gmail.com
-gnome-extensions-cli install 2087
+
 
 # Pobieranie i ustawianie tła przez lokalnego użytkownika
 echo "Pobieranie i ustawianie tła pulpitu..."
