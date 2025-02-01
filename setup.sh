@@ -52,7 +52,7 @@ gnome-extensions-cli install 2087
 ###############################################################################
 echo "Pobieranie i ustawianie tła pulpitu..."
 wget -O /home/osint/desktop2.png \
-  https://github.com/p4b1o/osint-template/raw/main/desktop2.png
+  https://github.com/p4b1o/osint-template/raw/main/desktop.png
 
 gsettings set org.gnome.desktop.background picture-uri \
   "file:///home/osint/desktop2.png"
