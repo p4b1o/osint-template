@@ -1,80 +1,115 @@
-# OSINT Template
+### **OSINT Template – Automatyczna Konfiguracja Środowiska**  
 
-## Instalacja maszyny wraz z narzędziami do pracy w OSINT
+Ten skrypt automatyzuje konfigurację systemu operacyjnego do pracy w OSINT, instalując niezbędne narzędzia, optymalizując środowisko GNOME oraz poprawiając bezpieczeństwo systemu.  
 
-Ten skrypt automatyzuje konfigurację systemu operacyjnego do pracy w OSINT, instalując niezbędne narzędzia, rozszerzenia przeglądarki, konfigurując środowisko GNOME i zabezpieczając system.
+---
 
-### **Instalacja**
+## **📌 Instalacja**  
 
-Aby uruchomić skrypt instalacyjny, wykonaj następujące polecenia w terminalu:
+Aby zainstalować i uruchomić skrypt, wykonaj następujące polecenia w terminalu:  
 
 ```bash
 sudo apt install curl -y
-curl https://raw.githubusercontent.com/p4b1o/osint-template/refs/heads/main/setup.sh > setup.sh
+curl -O https://raw.githubusercontent.com/p4b1o/osint-template/refs/heads/main/setup.sh
 chmod +x setup.sh
 ./setup.sh
 ```
 
-### **Co robi skrypt?**
+---
 
-#### 1. **Aktualizacja i instalacja podstawowych narzędzi**
+## **🔧 Co robi skrypt?**  
 
-- Aktualizuje system (`apt update && apt upgrade -y`).
-- Instalacja pakietów: `wget`, `curl`, `git`, `build-essential`, `python3-pip`, `pipx`, `flatpak`.
+### **1. Aktualizacja i instalacja podstawowych narzędzi**  
 
-#### 2. **Konfiguracja Python**
+- Czyści pamięć podręczną i aktualizuje system (`apt update && apt upgrade -y`).  
+- Instaluje niezbędne pakiety: `wget`, `curl`, `git`, `build-essential`, `python3-pip`, `flatpak`, `unzip`.  
 
-- Usuwa ograniczenie `EXTERNALLY-` dla Pythona.
-- Instaluje `python3-venv`, `pipx`, `pipx ensurepath`.
+### **2. Konfiguracja Pythona**  
 
-#### 3. **Instalacja rozszerzeń GNOME i konfiguracja środowiska**
+- Usuwa ograniczenie `EXTERNALLY-MANAGED` w Pythonie 3.11.  
+- Instaluje `python3-venv` oraz `pipx` do zarządzania pakietami.  
 
-- Konfiguruje docka (dodaje ikony: Firefox, TorBrowser, Terminal, Pliki, VSCode, Kosz).
-- Ustawia ciemny motyw terminala.
-- Konfiguruje układ przycisków okien i inne ustawienia GNOME.
-- Pobiera i ustawia domyślne tło pulpitu.
+### **3. Instalacja i konfiguracja GNOME**  
 
-#### 4. **Instalacja narzędzi OSINT**
+- **Instaluje GNOME Extensions CLI** i dodaje niezbędne rozszerzenia:  
+  - `Dash to Dock` – umożliwia dostosowanie docka GNOME.  
+  - `Rozszerzenie 2087` – dodatkowe funkcjonalności dla GNOME.  
 
-- `Sherlock` – narzędzie do wyszukiwania nazw użytkowników w sieci.
-- `Ghunt` – analiza kont Google.
-- `theHarvester` – zbieranie informacji o domenach.
-- `Exiftool` – analiza metadanych plików.
-- `Subfinder` – narzędzie do enumeracji subdomen.
+- **Konfiguruje środowisko GNOME**:  
+  - Dock zostaje umieszczony na dole ekranu i dostosowany pod kątem użytkownika.  
+  - Wyłączona zostaje automatyczna ukrywanie docka.  
+  - Maksymalny rozmiar ikon w docku ustawiony na 64 px.  
+  - Ustawiony ciemny motyw terminala.  
+  - Zmodyfikowane ustawienia powiadomień i blokady ekranu.  
 
-#### 5. **Instalacja Tor Browser i OnionShare**
+### **4. Ustawienie tła pulpitu**  
 
-- Dodaje repozytorium Flathub.
-- Instalacja i uruchomienie `Tor Browser`.
-- Instalacja `OnionShare` do anonimowego udostępniania plików.
+- Pobiera domyślne tło pulpitu i ustawia je jako tapetę systemową.  
 
-#### 6. **Instalacja Firefoxa i rozszerzeń**
+### **5. Wyłączenie zawieszania systemu (suspend)**  
 
-- Usuwa Firefoxa w wersji `snap`.
-- Dodaje repozytorium PPA Mozilli.
-- Instalacja Firefoxa z PPA.
-- Pobiera szablon konfiguracji Firefoxa i rozpakowuje go.
+- Wyłącza automatyczne przechodzenie systemu w tryb uśpienia.  
 
-#### 7. **Instalacja Visual Studio Code**
+### **6. Instalacja narzędzi OSINT (przez pipx)**  
 
-- Dodaje klucz GPG Microsoftu.
-- Dodaje repozytorium VSCode.
-- Instaluje `code`.
+Instaluje kluczowe narzędzia do OSINT:  
 
-## 📺 Szkolenie o skrypcie
-Aby dowiedzieć się więcej o działaniu tego skryptu i jego zastosowaniach w OSINT, obejrzyj moje szkolenie na YouTube:
+- **`Sherlock`** – wyszukiwanie nazw użytkowników w różnych serwisach.  
+- **`Ghunt`** – analiza kont Google.  
+- **`theHarvester`** – zbieranie informacji o domenach.  
+- **`Exiftool`** – analiza metadanych plików.  
+- **`H8mail`** – sprawdzanie wycieków haseł i adresów e-mail.  
+- **`Search-That-Hash` & `Name-That-Hash`** – identyfikacja i analiza skrótów hash.  
 
-[🔗 Obejrzyj szkolenie](https://www.youtube.com/watch?v=MUmslWdxViU)
+### **7. Instalacja Subfinder**  
 
-### **Podsumowanie**
+- Pobiera i instaluje **Subfinder**, narzędzie do enumeracji subdomen.  
 
-Po zakończeniu instalacji system jest gotowy do pracy w OSINT, wyposażony w niezbędne narzędzia oraz zoptymalizowany pod kątem prywatności i wygody użytkownika.
+### **8. Instalacja Tor Browser i OnionShare**  
 
-Aby przełączyć się na użytkownika `osint`, użyj:
+- Dodaje repozytorium Flathub i instaluje **Tor Browser**.
+- Uruchamia konfigurator Tor Browser.  
+
+### **9. Instalacja i konfiguracja Firefoxa**  
+
+- Usuwa domyślną wersję Firefoxa.  
+- Instaluje Firefox ESR z repozytorium **Debian Backports**.  
+- Pobiera i rozpakowuje predefiniowany szablon konfiguracji przeglądarki.  
+
+### **10. Instalacja narzędzia WhatsMyName-Python**  
+
+- Pobiera narzędzie **WhatsMyName-Python**, tworzy środowisko `venv` i instaluje zależności.  
+
+### **11. Instalacja Visual Studio Code**  
+
+- Pobiera i instaluje **Visual Studio Code** z oficjalnego repozytorium Microsoft.  
+
+### **12. Konfiguracja ulubionych aplikacji w GNOME-Shell**  
+
+- Dodaje do ulubionych aplikacji:  
+  - `Firefox ESR`  
+  - `GNOME Terminal`  
+  - `VS Code`  
+  - `Tor Browser`  
+
+---
+
+## **📺 Szkolenie o skrypcie**  
+
+Dowiedz się więcej o konfiguracji i zastosowaniach tego skryptu w OSINT, oglądając nasze szkolenie:  
+
+[🔗 Obejrzyj szkolenie](https://www.youtube.com/watch?v=MUmslWdxViU)  
+
+---
+
+## **✅ Podsumowanie**  
+
+Po zakończeniu instalacji system jest gotowy do pracy w OSINT – zoptymalizowany pod kątem prywatności, wydajności i wygody użytkownika.  
+
+Skrypt kończy działanie automatycznym restartem systemu.  
 
 ```bash
-su - osint
-```
+sudo reboot
+```  
 
-Jeśli masz pytania lub chcesz dostosować skrypt, skontaktuj się z autorem repozytorium.
-
+Jeśli masz pytania lub chcesz dostosować skrypt do własnych potrzeb, skontaktuj się z autorem repozytorium. 🚀
