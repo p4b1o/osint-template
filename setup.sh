@@ -26,14 +26,14 @@ sudo apt install -y python3-venv
 sudo apt install -y pipx
 pipx ensurepath
 # Załadowanie profilu (aby PATH się zaktualizował)
-source ~/.profile
+source ~/.bashrc
 
 ###############################################################################
 # INSTALACJA GNOME-EXTENSIONS-CLI
 ###############################################################################
 pipx install gnome-extensions-cli
 pipx ensurepath
-source ~/.profile
+source ~/.bashrc
 
 ###############################################################################
 # INSTALACJA I KONFIGURACJA ROZSZERZEŃ GNOME
@@ -92,6 +92,7 @@ pipx install ghunt
 pipx install theHarvester
 pipx install exiftool
 pipx ensurepath
+source ~/.bashrc
 
 ###############################################################################
 # INSTALACJA SUBFINDER
