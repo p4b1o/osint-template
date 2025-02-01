@@ -81,6 +81,9 @@ pipx install sherlock-project
 pipx install ghunt
 pipx install theHarvester
 pipx install exiftool
+pipx install h8mail
+pipx install search-that-hash
+pipx install name-that-hash
 tput reset && source ~/.profile
 
 ###############################################################################
@@ -112,7 +115,17 @@ echo "deb http://deb.debian.org/debian/ bookworm-backports main" \
   | sudo tee /etc/apt/sources.list.d/debian-backports.list
 sudo apt update
 sudo apt -t bookworm-backports install firefox-esr -y
-
+###############################################################################
+# INSTALACJA VISUAL STUDIO CODE
+###############################################################################
+mkdir ~/Programy
+cd ~/Programy
+git clone https://github.com/C3n7ral051nt4g3ncy/WhatsMyName-Python.git
+cd WhatsMyName-Python
+python3 -m venv WhatsMyName-Python-venv
+source WhatsMyName-Python-venv/bin/activate
+sudo pip3 install -r requirements.txt
+deactivate
 ###############################################################################
 # INSTALACJA VISUAL STUDIO CODE
 ###############################################################################
