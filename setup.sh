@@ -61,6 +61,15 @@ gsettings set org.gnome.desktop.background primary-color "rgb(0, 0, 0)"
 
 
 ###############################################################################
+# Reszta ustawień
+###############################################################################
+gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.notifications show-banners false
+gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+gsettings set org.gnome.Terminal.Legacy.Settings theme-variant 'dark'
+
+###############################################################################
 # WYŁĄCZANIE SUSPEND
 ###############################################################################
 sudo systemctl mask suspend.target
@@ -129,8 +138,10 @@ rm mozilla.tgz
 ###############################################################################
 # USTAWIENIE ULUBIONYCH APLIKACJI W GNOME-SHELL
 ###############################################################################
+gsettings set org.gnome.shell favorite-apps []
 gsettings set org.gnome.shell favorite-apps \
  "['firefox-esr.desktop','org.gnome.Nautilus.desktop','org.gnome.Terminal.desktop','code.desktop','org.torproject.torbrowser-launcher.desktop']"
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
 
 ###############################################################################
 # REBOOT
