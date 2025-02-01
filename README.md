@@ -10,7 +10,9 @@ Aby uruchomić skrypt instalacyjny, wykonaj następujące polecenia w terminalu:
 
 ```bash
 sudo apt install curl -y
-curl https://raw.githubusercontent.com/p4b1o/osint-template/refs/heads/main/setup.sh | bash
+curl https://raw.githubusercontent.com/p4b1o/osint-template/refs/heads/main/setup.sh < setup.sh
+chmod +x setup.sh
+./setup.sh
 ```
 
 ### **Co robi skrypt?**
