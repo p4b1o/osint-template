@@ -34,6 +34,7 @@ source ~/.bashrc
 pipx install gnome-extensions-cli
 pipx ensurepath
 source ~/.bashrc
+export PATH="$HOME/.local/bin:$PATH"
 
 ###############################################################################
 # INSTALACJA I KONFIGURACJA ROZSZERZEŃ GNOME
