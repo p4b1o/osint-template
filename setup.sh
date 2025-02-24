@@ -156,11 +156,17 @@ tar -xzvf mozilla.tgz
 rm mozilla.tgz
 
 ###############################################################################
+# SZABLON FIREFOX
+###############################################################################
+
+sudo flatpak install flameshot -y
+
+###############################################################################
 # USTAWIENIE ULUBIONYCH APLIKACJI W GNOME-SHELL
 ###############################################################################
 gsettings set org.gnome.shell favorite-apps []
 gsettings set org.gnome.shell favorite-apps \
- "['firefox-esr.desktop','org.gnome.Nautilus.desktop','org.gnome.Terminal.desktop','code.desktop','org.torproject.torbrowser-launcher.desktop']"
+ "['firefox-esr.desktop','org.gnome.Nautilus.desktop','org.gnome.Terminal.desktop','code.desktop','org.torproject.torbrowser-launcher.desktop', 'org.flameshot.Flameshot.desktop']"
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
 
 ###############################################################################
