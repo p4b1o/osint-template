@@ -72,9 +72,28 @@ Instaluje kluczowe narzędzia do OSINT:
 
 ### **9. Instalacja i konfiguracja Firefoxa**  
 
-- Usuwa domy- Usuwa domy\u015lną wersję Firefoxa.  
+- Usuwa domyślną wersję Firefoxa.  
 - Instaluje Firefox ESR z repozytorium **Debian Backports**.  
-- Pobiera i rozpakowuje predefiniowany szablon konfiguracji przeglądarki.  
+- Pobiera i rozpakowuje predefiniowany szablon konfiguracji przeglądarki zgodny z **Mistrzostwo w białym wywiadzie: Firefox**.  
+- **Instaluje następujące rozszerzenia:**  
+  - **uBlock Origin** – blokowanie reklam i trackerów.  
+  - **Firefox Containers** – separacja danych między witrynami.  
+  - **Wappalyzer** – identyfikacja technologii używanych na stronach.  
+  - **Fireshot** – tworzenie zrzutów ekranu całych stron internetowych.  
+  - **User-Agent Switcher** – zmiana agenta użytkownika w przeglądarce.  
+  - **Exif Viewer** – analiza danych EXIF w obrazach.  
+  - **OneTab** – zarządzanie zakładkami i oszczędzanie pamięci.  
+  - **DownThemAll** – pobieranie wszystkich zasobów ze strony jednym kliknięciem.  
+  - **Bulk Media Downloader** – pobieranie dużej ilości plików multimedialnych z witryn internetowych.  
+  - **Copy Selected Links** – kopiowanie wszystkich wybranych linków w treści strony.  
+  - **Image Search Options** – ułatwia wyszukiwanie obrazów w różnych wyszukiwarkach.  
+  - **Search By Image** – narzędzie do wyszukiwania odwrotnego obrazów w popularnych serwisach.  
+- **Dostosowuje ustawienia prywatności**, m.in.:  
+  - Włącza ścisłą ochronę przed śledzeniem.  
+  - Włącza blokowanie fingerprintingu.  
+  - Modyfikuje ustawienia WebRTC, by zapobiec wyciekom IP.  
+  - Ogranicza dostęp do sensorów i API geolokalizacji.  
+  - Dezaktywuje telemetrię Mozilli i zbieranie danych diagnostycznych.  
 
 ### **10. Instalacja narzędzia WhatsMyName-Python**  
 
@@ -96,13 +115,5 @@ Instaluje kluczowe narzędzia do OSINT:
 
 ## **📺 Szkolenie o skrypcie**  
 
-Dowiedz się więcej o konfiguracji i zastosowaniach tego skryptu w OSINT, oglądając nasze szkolenie:  
-
-[🔗 Obejrzyj szkolenie](https://www.youtube.com/watch?v=MUmslWdxViU)  
-
----
-
-## **✅ Podsumowanie**  
-
-Po zakończeniu instalacji system jest gotowy...
+Dowiedz się więcej o konfiguracji i zastosowaniach tego skryptu w OSINT, ogląd...
 
