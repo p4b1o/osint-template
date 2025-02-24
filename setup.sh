@@ -84,7 +84,14 @@ pipx install exiftool
 pipx install h8mail
 pipx install search-that-hash
 pipx install name-that-hash
+pipx install photon --include-deps
+
 tput reset && source ~/.profile
+
+###############################################################################
+# INSTALACJA HTTrack
+###############################################################################
+sudo apt install -y httrack
 
 ###############################################################################
 # INSTALACJA SUBFINDER
