@@ -72,7 +72,7 @@ Instaluje kluczowe narzędzia do OSINT:
 
 ### **9. Instalacja i konfiguracja Firefoxa**  
 
-- Usuwa domyślną wersję Firefoxa.  
+- Usuwa domy- Usuwa domy\u015lną wersję Firefoxa.  
 - Instaluje Firefox ESR z repozytorium **Debian Backports**.  
 - Pobiera i rozpakowuje predefiniowany szablon konfiguracji przeglądarki.  
 
@@ -104,12 +104,5 @@ Dowiedz się więcej o konfiguracji i zastosowaniach tego skryptu w OSINT, oglą
 
 ## **✅ Podsumowanie**  
 
-Po zakończeniu instalacji system jest gotowy do pracy w OSINT – zoptymalizowany pod kątem prywatności, wydajności i wygody użytkownika.  
+Po zakończeniu instalacji system jest gotowy...
 
-Skrypt kończy działanie automatycznym restartem systemu.  
-
-```bash
-sudo reboot
-```  
-
-Jeśli masz pytania lub chcesz dostosować skrypt do własnych potrzeb, skontaktuj się z autorem repozytorium. 🚀
